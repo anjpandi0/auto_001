@@ -1,0 +1,7 @@
+com\auto\testCases\BaseClass.class
+com\auto\testCases\TC_LoginDDT_002.class
+com\auto\testCases\TC_LoginTest_001.class
+com\auto\utilities\Reporting.class
+com\auto\utilities\ReadConfig.class
+com\auto\utilities\XLUtils.class
+com\auto\pageObjects\LoginPage.class
