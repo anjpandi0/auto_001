@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -45,7 +46,14 @@ public class BaseClass {
 			System.setProperty("webdriver.chrome.driver", config.getChromePath());
 			driver = new ChromeDriver();
 		}
+		if (br.equals("firefox")) {
+			System.setProperty("webdriver.gecko.driver", config.getFirefoxPath());
+			driver = new FirefoxDriver();
+		}
+		driver.manage().window().maximize();
 		driver.get(baseURL);
+	//	driver.manage().deleteAllCookies();
+
 		Thread.sleep(2000);
 	}
 

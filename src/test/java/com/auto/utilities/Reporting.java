@@ -8,7 +8,10 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -27,6 +30,7 @@ public class Reporting extends TestListenerAdapter {
 	public ExtentReports extent;
 	public ExtentTest logger;
 
+	@BeforeClass
 	public void onStart(ITestContext testContext) {
 
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
@@ -47,6 +51,7 @@ public class Reporting extends TestListenerAdapter {
 		htmlReporter.config().setTheme(Theme.DARK);
 	}
 
+	@AfterTest
 	public void onTestSuccess(ITestResult tr) {
 
 		logger = extent.createTest(tr.getName());
@@ -54,6 +59,7 @@ public class Reporting extends TestListenerAdapter {
 
 	}
 
+	@AfterTest
 	public void onTestFailure(ITestResult tr) {
 
 		logger = extent.createTest(tr.getName());
@@ -73,13 +79,28 @@ public class Reporting extends TestListenerAdapter {
 
 	}
 
+	@AfterTest
 	public void onTestSkipeed(ITestResult tr) {
 
 		logger = extent.createTest(tr.getName());
 		logger.log(Status.SKIP, MarkupHelper.createLabel(tr.getName(), ExtentColor.ORANGE));
 
 	}
-
+	
+	/*@AfterMethod
+    public void getResult(ITestResult result){
+    if(result.getStatus() == ITestResult.FAILURE){
+    //logger.log(Status.FAIL, "Test Case Failed is "+result.getName());
+    //MarkupHelper is used to display the output in different colors
+    logger.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
+    logger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
+    }else if(result.getStatus() == ITestResult.SKIP){
+    //logger.log(Status.SKIP, "Test Case Skipped is "+result.getName());
+    logger.log(Status.SKIP, MarkupHelper.createLabel(result.getName() + " - Test Case Skipped", ExtentColor.ORANGE)); 
+    }
+    }
+	*/
+	@AfterClass	
 	public void onFinish() {
 		extent.flush();
 	}

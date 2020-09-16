@@ -42,6 +42,10 @@ public class LoginPage extends GenericUtilities {
 	@CacheLookup
 	WebElement loginSubmit;
 
+	@FindBy(xpath = "//div[contains(text(),'My Account')]")
+	@CacheLookup
+	WebElement validateAfterLogin;
+
 	public void checkUserNameAndEnter(String user) {
 		explicitWaitVisibility(driver, userName);
 		if (userName.isDisplayed()) {
@@ -117,4 +121,14 @@ public class LoginPage extends GenericUtilities {
 		return loginSubmit;
 	}
 
+	public boolean validatePageAfterLogin() {
+		boolean flag = false;
+		explicitWaitVisibility(driver, validateAfterLogin);
+
+		if (validateAfterLogin.isDisplayed()) {
+			flag = true;
+		}
+		return flag;
+
+	}
 }

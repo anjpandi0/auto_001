@@ -47,4 +47,10 @@ public class ReadConfig {
 
 		return chpath;
 	}
+
+	public String getFirefoxPath() {
+		String ffpath = prop.getProperty("ffpath");
+
+		return ffpath;
+	}
 }

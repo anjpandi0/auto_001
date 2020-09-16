@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.auto.pageObjects.LoginPage;
@@ -17,8 +18,6 @@ public class TC_LoginDDT_002 extends BaseClass {
 	@Test
 	public void loginPage() throws IOException, InterruptedException {
 
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
 		logger.info("Login Method is started");
 
 		LoginPage login = new LoginPage(driver);
@@ -37,6 +36,11 @@ public class TC_LoginDDT_002 extends BaseClass {
 				logger.info("Click on Login Button");
 				login.checkLoginButtonAndClick();
 
+				Thread.sleep(2000);
+
+				boolean logVali = login.validatePageAfterLogin();
+
+				Assert.assertEquals(logVali, true);
 			}
 
 		} catch (Exception e) {

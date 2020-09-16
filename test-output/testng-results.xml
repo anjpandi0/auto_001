@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="59307" started-at="2020-09-16T09:22:16Z" finished-at="2020-09-16T09:23:15Z">
+  <suite name="Suite" duration-ms="250191" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:40:11Z">
     <groups>
     </groups>
-    <test name="Auto Test" duration-ms="59307" started-at="2020-09-16T09:22:16Z" finished-at="2020-09-16T09:23:15Z">
+    <test name="Auto Test" duration-ms="116098" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:37:57Z">
       <class name="com.auto.testCases.TC_LoginTest_001">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="setUp" is-config="true" duration-ms="12234" started-at="2020-09-16T09:22:16Z" finished-at="2020-09-16T09:22:28Z">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="setUp" is-config="true" duration-ms="13525" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:36:15Z">
           <params>
             <param index="0">
               <value>
@@ -18,15 +18,80 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="loginPage" duration-ms="45430" started-at="2020-09-16T09:22:29Z" finished-at="2020-09-16T09:23:14Z">
+        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="loginPage" duration-ms="43625" started-at="2020-09-16T10:36:15Z" finished-at="2020-09-16T10:36:58Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="tearDown" is-config="true" duration-ms="1442" started-at="2020-09-16T09:23:14Z" finished-at="2020-09-16T09:23:15Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="tearDown" is-config="true" duration-ms="1205" started-at="2020-09-16T10:36:58Z" finished-at="2020-09-16T10:36:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
+      <class name="com.auto.testCases.TC_LoginDDT_002">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="setUp" is-config="true" duration-ms="13231" started-at="2020-09-16T10:36:59Z" finished-at="2020-09-16T10:37:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="loginPage" duration-ms="43032" started-at="2020-09-16T10:37:13Z" finished-at="2020-09-16T10:37:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPage -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="tearDown" is-config="true" duration-ms="1276" started-at="2020-09-16T10:37:56Z" finished-at="2020-09-16T10:37:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
     </test> <!-- Auto Test -->
+    <test name="Auto Test1" duration-ms="133987" started-at="2020-09-16T10:37:57Z" finished-at="2020-09-16T10:40:11Z">
+      <class name="com.auto.testCases.TC_LoginTest_001">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="setUp" is-config="true" duration-ms="19338" started-at="2020-09-16T10:37:57Z" finished-at="2020-09-16T10:38:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="loginPage" duration-ms="42568" started-at="2020-09-16T10:38:16Z" finished-at="2020-09-16T10:38:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPage -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="tearDown" is-config="true" duration-ms="6154" started-at="2020-09-16T10:38:59Z" finished-at="2020-09-16T10:39:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
+      <class name="com.auto.testCases.TC_LoginDDT_002">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="setUp" is-config="true" duration-ms="17499" started-at="2020-09-16T10:39:05Z" finished-at="2020-09-16T10:39:23Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="loginPage" duration-ms="42655" started-at="2020-09-16T10:39:23Z" finished-at="2020-09-16T10:40:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPage -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="tearDown" is-config="true" duration-ms="5764" started-at="2020-09-16T10:40:05Z" finished-at="2020-09-16T10:40:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
+    </test> <!-- Auto Test1 -->
   </suite> <!-- Suite -->
 </testng-results>
