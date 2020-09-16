@@ -1,51 +1,46 @@
 package com.auto.testCases;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.auto.pageObjects.LoginPage;
-
-import junit.framework.Assert;
+import com.auto.utilities.GenericUtilities;
 
 public class TC_LoginTest_001 extends BaseClass {
+	Logger logger = LoggerFactory.getLogger(GenericUtilities.class);
 
 	@Test
-	public void loginPage() throws IOException {
+	public void loginPage() throws IOException, InterruptedException {
 
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
+		logger.info("Login Method is started");
+		
+		LoginPage login=new LoginPage(driver);
+		TimeUnit.SECONDS.sleep(40);
 
 		try {
-			logger.info("Page is opening");
-			Thread.sleep(10000);
-			LoginPage log = new LoginPage(driver);
+		//	boolean logWind = getLoginPage().validateLoginPopup(driver);
 
-			log.setUserName(userName);
-			logger.info("User Nae entered");
+			if (login.getUserName().isDisplayed()) {
+				logger.info("Entering User name");
+				login.checkUserNameAndEnter(userName);
 
-			log.setPassword(password);
-			logger.info("password entered");
+				logger.info("Entering User name");
+				login.checkPasswordAndEnter(password);
 
-			log.setBtnLogin();
-			logger.info("clicked on login");
-
-			Thread.sleep(100000);
-
-			if(driver.findElement(By.xpath("//u[contains(text(),'Facebook')]")).isDisplayed()) {
-				Assert.assertTrue("Test case Passed",true);
-				captureScreen(driver, "TC_LoginTest_001");
+				logger.info("Click on Login Button");
+				login.checkLoginButtonAndClick();
 
 			}
-			else {
-				captureScreen(driver, "TC_LoginTest_001-->loginPage");
-				Assert.assertTrue("Test case Passed",false);
 
-			}
-			
-			} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+
+			logger.info("Exception occured due to" + e.getMessage());
 			e.printStackTrace();
 		}
 
