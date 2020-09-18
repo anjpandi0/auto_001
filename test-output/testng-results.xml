@@ -1,96 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+<testng-results skipped="4" failed="0" ignored="4" total="8" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="250191" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:40:11Z">
+  <suite name="Suite" duration-ms="1048" started-at="2020-09-18T09:33:30Z" finished-at="2020-09-18T09:33:31Z">
     <groups>
     </groups>
-    <test name="Auto Test" duration-ms="116098" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:37:57Z">
+    <test name="Auto Test" duration-ms="401" started-at="2020-09-18T09:33:30Z" finished-at="2020-09-18T09:33:30Z">
       <class name="com.auto.testCases.TC_LoginTest_001">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="setUp" is-config="true" duration-ms="13525" started-at="2020-09-16T10:36:01Z" finished-at="2020-09-16T10:36:15Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="loginPage" duration-ms="43625" started-at="2020-09-16T10:36:15Z" finished-at="2020-09-16T10:36:58Z">
+        <test-method status="SKIP" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@192b07fd]" name="loginPage" duration-ms="0" started-at="2020-09-18T09:33:30Z" finished-at="2020-09-18T09:33:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@1e397ed7]" name="tearDown" is-config="true" duration-ms="1205" started-at="2020-09-16T10:36:58Z" finished-at="2020-09-16T10:36:59Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
       </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
       <class name="com.auto.testCases.TC_LoginDDT_002">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="setUp" is-config="true" duration-ms="13231" started-at="2020-09-16T10:36:59Z" finished-at="2020-09-16T10:37:13Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="loginPage" duration-ms="43032" started-at="2020-09-16T10:37:13Z" finished-at="2020-09-16T10:37:56Z">
+        <test-method status="SKIP" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@64bfbc86]" name="loginPage" duration-ms="0" started-at="2020-09-18T09:33:30Z" finished-at="2020-09-18T09:33:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@490ab905]" name="tearDown" is-config="true" duration-ms="1276" started-at="2020-09-16T10:37:56Z" finished-at="2020-09-16T10:37:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
       </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
     </test> <!-- Auto Test -->
-    <test name="Auto Test1" duration-ms="133987" started-at="2020-09-16T10:37:57Z" finished-at="2020-09-16T10:40:11Z">
+    <test name="Auto Test1" duration-ms="16" started-at="2020-09-18T09:33:31Z" finished-at="2020-09-18T09:33:31Z">
       <class name="com.auto.testCases.TC_LoginTest_001">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="setUp" is-config="true" duration-ms="19338" started-at="2020-09-16T10:37:57Z" finished-at="2020-09-16T10:38:16Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[firefox]]>
-              </value>
-            </param>
-          </params>
+        <test-method status="FAIL" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginTest_001@5f9d02cb]" name="setUp" is-config="true" duration-ms="0" started-at="2020-09-18T09:33:30Z" finished-at="2020-09-18T09:33:30Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:290)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:359)
+at org.testng.internal.Parameters.createParameters(Parameters.java:620)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:190)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:209)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:401)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="loginPage" duration-ms="42568" started-at="2020-09-16T10:38:16Z" finished-at="2020-09-16T10:38:59Z">
+        <test-method status="SKIP" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@5f9d02cb]" name="loginPage" duration-ms="0" started-at="2020-09-18T09:33:31Z" finished-at="2020-09-18T09:33:31Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:290)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:359)
+at org.testng.internal.Parameters.createParameters(Parameters.java:620)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:190)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:209)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:401)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@544fe44c]" name="tearDown" is-config="true" duration-ms="6154" started-at="2020-09-16T10:38:59Z" finished-at="2020-09-16T10:39:05Z">
+        <test-method status="SKIP" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginTest_001@5f9d02cb]" name="tearDown" is-config="true" duration-ms="0" started-at="2020-09-18T09:33:31Z" finished-at="2020-09-18T09:33:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
       <class name="com.auto.testCases.TC_LoginDDT_002">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="setUp" is-config="true" duration-ms="17499" started-at="2020-09-16T10:39:05Z" finished-at="2020-09-16T10:39:23Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[firefox]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="loginPage" duration-ms="42655" started-at="2020-09-16T10:39:23Z" finished-at="2020-09-16T10:40:05Z">
+        <test-method status="SKIP" signature="loginPage()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@63753b6d]" name="loginPage" duration-ms="0" started-at="2020-09-18T09:33:31Z" finished-at="2020-09-18T09:33:31Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeSuite on method setUp but has not been marked @Optional or defined
+in C:\Users\anjibabu\git\auto_001\testng.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:290)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:359)
+at org.testng.internal.Parameters.createParameters(Parameters.java:620)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:190)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:209)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:401)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.auto.testCases.TC_LoginDDT_002@31610302]" name="tearDown" is-config="true" duration-ms="5764" started-at="2020-09-16T10:40:05Z" finished-at="2020-09-16T10:40:11Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
       </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
     </test> <!-- Auto Test1 -->
   </suite> <!-- Suite -->

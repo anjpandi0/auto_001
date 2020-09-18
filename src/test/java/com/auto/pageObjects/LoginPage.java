@@ -1,50 +1,64 @@
 package com.auto.pageObjects;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.auto.utilities.GenericUtilities;
 
 public class LoginPage extends GenericUtilities {
-
-	Logger logger = LoggerFactory.getLogger(GenericUtilities.class);
 
 	WebDriver driver;
 
 	public LoginPage(WebDriver driver1) {
 		driver = driver1;
 		PageFactory.initElements(driver, this);
-
 	}
 
-	@FindBy(xpath = "//input[@class='_2zrpKA _1dBPDZ']")
+	@FindBy(xpath = ".//a[@class='userlink']")
+	@CacheLookup
+	WebElement userNameIcon;
+
+	@FindBy(xpath = ".//a[@class='ico-login']")
+	@CacheLookup
+	WebElement iconLogin;
+
+	@FindBy(id = "Username")
 	@CacheLookup
 	WebElement userName;
 
-	@FindBy(xpath = "//input[@type='password']")
+	@FindBy(id = "Password")
 	@CacheLookup
 	WebElement password;
 
-	@FindBy(xpath = ".//a[.='Login']")
-	@CacheLookup
-	WebElement btnLogin;
-
-	@FindBy(xpath = ".//span//span[.='Login']")
-	@CacheLookup
-	WebElement loginWind;
-
-	@FindBy(xpath = "(//button[@type='submit'])[2]")
+	@FindBy(xpath = "//input[@type='submit']")
 	@CacheLookup
 	WebElement loginSubmit;
 
-	@FindBy(xpath = "//div[contains(text(),'My Account')]")
+	@FindBy(xpath = "//a[@class='ico-account']")
 	@CacheLookup
 	WebElement validateAfterLogin;
+	
+	@FindBy(xpath = ".//li[@class='inbox']")
+	@CacheLookup
+	WebElement inboxIcon;
+
+	public boolean clickUserIcon() throws Exception {
+		boolean flag = false;
+		explicitWaitVisibility(driver, userNameIcon);
+		click(userNameIcon);
+
+		explicitWaitVisibility(driver, iconLogin);
+		if (iconLogin.isDisplayed()) {
+			click(iconLogin);
+			flag = true;
+		}
+		return flag;
+
+	}
 
 	public void checkUserNameAndEnter(String user) {
 		explicitWaitVisibility(driver, userName);
@@ -76,56 +90,10 @@ public class LoginPage extends GenericUtilities {
 
 	}
 
-	public boolean validateLoginPopup(WebDriver driver) throws Exception {
+	public boolean validatePageAfterLogin() throws Exception {
 		boolean flag = false;
-		pageLoadTime30Seconds(driver);
-		try {
-			explicitWaitVisibility(driver, loginWind);
-			if (loginWind.isEnabled()) {
-				flag = true;
-
-			} else {
-				logger.info("loginWind is not available");
-
-			}
-		} catch (NullPointerException e) {
-			explicitWaitVisibility(driver, btnLogin);
-			click(btnLogin);
-			flag = true;
-		}
-		return flag;
-
-	}
-
-	public Logger getLogger() {
-		return logger;
-	}
-
-	public WebElement getUserName() {
-		return userName;
-	}
-
-	public WebElement getPassword() {
-		return password;
-	}
-
-	public WebElement getBtnLogin() {
-		return btnLogin;
-	}
-
-	public WebElement getLoginWind() {
-		return loginWind;
-	}
-
-	public WebElement getLoginSubmit() {
-		return loginSubmit;
-	}
-
-	public boolean validatePageAfterLogin() {
-		boolean flag = false;
-		explicitWaitVisibility(driver, validateAfterLogin);
-
-		if (validateAfterLogin.isDisplayed()) {
+		explicitWaitVisibility(driver, inboxIcon);
+		if (inboxIcon.isDisplayed()) {
 			flag = true;
 		}
 		return flag;

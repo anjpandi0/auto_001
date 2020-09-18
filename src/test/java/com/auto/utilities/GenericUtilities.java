@@ -3,6 +3,7 @@ package com.auto.utilities;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -12,14 +13,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GenericUtilities {
 
 	WebDriver driver;
 
-	Logger logger = LoggerFactory.getLogger(GenericUtilities.class);
+	public static Logger logger = Logger.getLogger(GenericUtilities.class);
 
 	public void click(WebElement element) throws Exception {
 		// @vtiruvee --06/05/2018 added loop to click on the given element\

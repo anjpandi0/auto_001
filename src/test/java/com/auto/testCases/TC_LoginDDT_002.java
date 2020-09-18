@@ -3,17 +3,12 @@ package com.auto.testCases;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.auto.pageObjects.LoginPage;
-import com.auto.utilities.GenericUtilities;
 
 public class TC_LoginDDT_002 extends BaseClass {
-
-	Logger logger = LoggerFactory.getLogger(GenericUtilities.class);
 
 	@Test
 	public void loginPage() throws IOException, InterruptedException {
@@ -24,9 +19,9 @@ public class TC_LoginDDT_002 extends BaseClass {
 		TimeUnit.SECONDS.sleep(40);
 
 		try {
-			// boolean logWind = getLoginPage().validateLoginPopup(driver);
+			boolean logWind = login.clickUserIcon();
 
-			if (login.getUserName().isDisplayed()) {
+			if (logWind) {
 				logger.info("Entering User name");
 				login.checkUserNameAndEnter(userName);
 
@@ -36,7 +31,7 @@ public class TC_LoginDDT_002 extends BaseClass {
 				logger.info("Click on Login Button");
 				login.checkLoginButtonAndClick();
 
-				Thread.sleep(2000);
+				TimeUnit.SECONDS.sleep(40);
 
 				boolean logVali = login.validatePageAfterLogin();
 

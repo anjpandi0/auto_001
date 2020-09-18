@@ -2,7 +2,7 @@ package com.auto.testCases;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -12,19 +12,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import com.auto.pageObjects.LoginPage;
-import com.auto.utilities.GenericUtilities;
 import com.auto.utilities.ReadConfig;
 
 public class BaseClass {
 
-	org.slf4j.Logger logger = LoggerFactory.getLogger(BaseClass.class);
+	// org.slf4j.Logger logger = LoggerFactory.getLogger(BaseClass.class);
 
 	ReadConfig config = new ReadConfig();
 
@@ -33,13 +29,14 @@ public class BaseClass {
 	public String password = config.getPassword();
 	public static WebDriver driver;
 
-	// public static Logger logger;
+	// public static Logger logger = Logger.getLogger(BaseClass.class);
+	public static Logger logger = Logger.getLogger(BaseClass.class.getName());
 
-	@BeforeClass
+	@BeforeTest
 	@Parameters("browser")
 	public void setUp(String br) throws InterruptedException {
 
-		logger.info("Automation");
+		// logger = Logger.getLogger("Automation");
 		PropertyConfigurator.configure("Log4j.properties");
 
 		if (br.equals("chrome")) {
@@ -50,26 +47,32 @@ public class BaseClass {
 			System.setProperty("webdriver.gecko.driver", config.getFirefoxPath());
 			driver = new FirefoxDriver();
 		}
-		driver.manage().window().maximize();
 		driver.get(baseURL);
-	//	driver.manage().deleteAllCookies();
-
-		Thread.sleep(2000);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-	@AfterClass
+	@AfterTest
 	public void tearDown() {
 
 		driver.quit();
 	}
 
-	public void captureScreen(WebDriver driver, String tname) throws IOException {
+	public static String captureScreen() throws IOException {
 
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		File target = new File(System.getProperty("user.dir") + "/Screenshots/" + tname + ".png");
-		FileUtils.copyFile(source, target);
-		System.out.println("Screen shot taken at" + target);
+		String ssPath = System.getProperty("user.dir") + "/Screenshots/" + System.currentTimeMillis() + ".png";
+		File target = new File(ssPath);
+
+		try {
+			FileUtils.copyFile(source, target);
+			System.out.println("Screen shot taken at" + target);
+		} catch (Exception e) {
+			System.out.println("Find Screen" + e.getMessage());
+		}
+
+		return ssPath;
 
 	}
 

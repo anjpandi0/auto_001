@@ -1,108 +1,151 @@
 package com.auto.utilities;
 
-import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.testng.Assert;
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
+import com.auto.testCases.BaseClass;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.*;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class Reporting extends TestListenerAdapter {
+public class Reporting implements ITestListener {
 
 	public ExtentHtmlReporter htmlReporter;
 	public ExtentReports extent;
 	public ExtentTest logger;
+	String workSpace = null;
+	String jobName = System.getenv("JOB_NAME");
+	public static Logger log = Logger.getLogger(BaseClass.class.getName());
 
-	@BeforeClass
-	public void onStart(ITestContext testContext) {
+	@Override
+	public void onTestStart(ITestResult tr) {
+		log.info("onTestStart is Started");
+		logger = extent.createTest(tr.getName());
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult tr) {
+		log.info("onTestSkipped is Started");
+
+		logger = extent.createTest(tr.getName());
+		logger.log(Status.SKIP, MarkupHelper.createLabel(tr.getName(), ExtentColor.ORANGE));
+		log.info("onTestSkipped is Ended");
+
+	}
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult tr) {
+		logger = extent.createTest(tr.getName());
+
+	}
+
+	@Override
+	public void onStart(ITestContext context) {
+		log.info("onStart is Started");
 
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		String reportName = "test-report" + timeStamp + ".html";
 
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/" + reportName);
-		htmlReporter.loadConfig(System.getProperty("user.dir") + "/extent-config.xml");
+		workSpace = System.getenv("WORKSPACE");
+		if (workSpace != null) {
+			htmlReporter = new ExtentHtmlReporter(workSpace+"/Reports/" + reportName);
+			htmlReporter.loadConfig(System.getProperty("user.dir") + "/extent-config.xml");
+			htmlReporter = new ExtentHtmlReporter(workSpace+"/Reports/" + reportName);
 
-		extent = new ExtentReports();
-		extent.attachReporter(htmlReporter);
-		extent.setSystemInfo("Host Name", "localhost");
-		extent.setSystemInfo("Environment", "QA");
-		extent.setSystemInfo("user", "Anji");
+			extent = new ExtentReports();
+			extent.attachReporter(htmlReporter);
+			logger = extent.createTest("Test Report");
 
-		htmlReporter.config().setDocumentTitle("Automation Report");
-		htmlReporter.config().setReportName("Test Report");
-		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
-		htmlReporter.config().setTheme(Theme.DARK);
+			extent.setSystemInfo("JOB_NAME", "jobName");
+			extent.setSystemInfo("Environment", "QA");
+			extent.setSystemInfo("user", "Anji");
+
+			htmlReporter.config().setChartVisibilityOnOpen(true);
+			htmlReporter.config().setDocumentTitle("Automation Report");
+			htmlReporter.config().setReportName("Test Report");
+			htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+			htmlReporter.config().setTheme(Theme.DARK);
+
+		} else {
+			htmlReporter = new ExtentHtmlReporter("./Reports/" + reportName);
+			htmlReporter.loadConfig(System.getProperty("user.dir") + "/extent-config.xml");
+
+			htmlReporter = new ExtentHtmlReporter("./Reports/" + reportName);
+			htmlReporter.loadConfig(System.getProperty("user.dir") + "/extent-config.xml");
+
+			extent = new ExtentReports();
+			extent.attachReporter(htmlReporter);
+			logger = extent.createTest("Test Report");
+
+			extent.setSystemInfo("Host Name", "localhost");
+			extent.setSystemInfo("Environment", "QA");
+			extent.setSystemInfo("user", "Anji");
+
+			htmlReporter.config().setChartVisibilityOnOpen(true);
+			htmlReporter.config().setDocumentTitle("Automation Report");
+			htmlReporter.config().setReportName("Test Report");
+			htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+			htmlReporter.config().setTheme(Theme.DARK);
+		}
+		log.info("onStart is Ended");
+
 	}
 
-	@AfterTest
+	@Override
+	public void onFinish(ITestContext context) {
+
+		context.getCurrentXmlTest();
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void onTestSuccess(ITestResult tr) {
+		log.info("onTestSuccess is Started");
 
 		logger = extent.createTest(tr.getName());
 		logger.log(Status.PASS, MarkupHelper.createLabel(tr.getName(), ExtentColor.GREEN));
 
+		try {
+			String screenShot = BaseClass.captureScreen();
+			logger.pass(tr.getThrowable().getMessage(),
+					MediaEntityBuilder.createScreenCaptureFromPath(screenShot).build());
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+		log.info("onTestSuccess is Ended");
+
 	}
 
-	@AfterTest
+	@Override
 	public void onTestFailure(ITestResult tr) {
+		log.info("onTestFailure is Started");
 
 		logger = extent.createTest(tr.getName());
 		logger.log(Status.FAIL, MarkupHelper.createLabel(tr.getName(), ExtentColor.RED));
 
-		String screenShotPath = System.getProperty("user.dir") + "\\Screenshots" + tr.getName() + ".png";
-
-		File file = new File(screenShotPath);
-
-		if (file.exists()) {
-			try {
-				logger.fail("Screenshot is below:" + logger.addScreenCaptureFromPath(screenShotPath));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			String screenShot = BaseClass.captureScreen();
+			logger.fail(tr.getThrowable().getMessage(),
+					MediaEntityBuilder.createScreenCaptureFromPath(screenShot).build());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		log.info("onTestFailure is Ended");
 
-	}
-
-	@AfterTest
-	public void onTestSkipeed(ITestResult tr) {
-
-		logger = extent.createTest(tr.getName());
-		logger.log(Status.SKIP, MarkupHelper.createLabel(tr.getName(), ExtentColor.ORANGE));
-
-	}
-	
-	/*@AfterMethod
-    public void getResult(ITestResult result){
-    if(result.getStatus() == ITestResult.FAILURE){
-    //logger.log(Status.FAIL, "Test Case Failed is "+result.getName());
-    //MarkupHelper is used to display the output in different colors
-    logger.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " - Test Case Failed", ExtentColor.RED));
-    logger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
-    }else if(result.getStatus() == ITestResult.SKIP){
-    //logger.log(Status.SKIP, "Test Case Skipped is "+result.getName());
-    logger.log(Status.SKIP, MarkupHelper.createLabel(result.getName() + " - Test Case Skipped", ExtentColor.ORANGE)); 
-    }
-    }
-	*/
-	@AfterClass	
-	public void onFinish() {
-		extent.flush();
 	}
 
 }

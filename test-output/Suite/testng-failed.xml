@@ -7,6 +7,13 @@
   <test thread-count="5" name="Auto Test(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
+      <class name="com.auto.testCases.TC_LoginDDT_002">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="loginPage"/>
+        </methods>
+      </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
       <class name="com.auto.testCases.TC_LoginTest_001">
         <methods>
           <include name="tearDown"/>
@@ -16,4 +23,23 @@
       </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
     </classes>
   </test> <!-- Auto Test(failed) -->
+  <test thread-count="5" name="Auto Test1(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.auto.testCases.TC_LoginDDT_002">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="loginPage"/>
+        </methods>
+      </class> <!-- com.auto.testCases.TC_LoginDDT_002 -->
+      <class name="com.auto.testCases.TC_LoginTest_001">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="loginPage"/>
+        </methods>
+      </class> <!-- com.auto.testCases.TC_LoginTest_001 -->
+    </classes>
+  </test> <!-- Auto Test1(failed) -->
 </suite> <!-- Failed suite [Suite] -->
